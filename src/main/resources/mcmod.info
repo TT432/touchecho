@@ -1,0 +1,19 @@
+[
+  {
+    "modid": "touchecho",
+    "name": "Touchecho",
+    "description": "better",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "",
+    "updateUrl": "",
+    "authorList": [
+      "DustW",
+      "NmmOC7"
+    ],
+    "credits": "",
+    "logoFile": "",
+    "screenshots": [],
+    "dependencies": []
+  }
+]

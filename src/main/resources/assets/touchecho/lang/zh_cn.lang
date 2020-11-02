@@ -1,0 +1,6 @@
+item.touchecho.dirtBall.name=泥土球
+tile.touchecho.compressedDirt.name=压缩泥土
+itemGroup.item_tab=TouchEcho 物品
+itemGroup.block_tab=TouchEcho 方块
+itemGroup.tool_tab=TouchEcho 工具
+item.touchecho.dirtPickaxe=泥土镐
