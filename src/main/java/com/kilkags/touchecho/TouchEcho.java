@@ -1,11 +1,15 @@
 package com.kilkags.touchecho;
 
 import com.kilkags.touchecho.crafting.FurnaceRecipeRegistryHandler;
+import com.kilkags.touchecho.entity.ModEntityList;
 import com.kilkags.touchecho.potion.PotionRegistryHandler;
+import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
  * @author kilkags
@@ -32,8 +36,9 @@ public class TouchEcho {
      * The registry events below will have fired prior to entry to this method.
      */
     @Mod.EventHandler
-    public void preinit(FMLPreInitializationEvent event) {
-
+    @SideOnly(Side.CLIENT)
+    public void preInit(FMLPreInitializationEvent event) {
+        RegistryHandler.registerRenderAll();
     }
 
     /**
@@ -49,7 +54,7 @@ public class TouchEcho {
      * This is the final initialization event. Register actions from other mods here
      */
     @Mod.EventHandler
-    public void postinit(FMLPostInitializationEvent event) {
+    public void postInit(FMLPostInitializationEvent event) {
 
     }
 }

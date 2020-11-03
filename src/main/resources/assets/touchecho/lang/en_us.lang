@@ -3,12 +3,12 @@ item.touchecho.dirtPickaxe.name=Dirt Pickaxe
 
 tile.touchecho.compressedDirt.name=Compressed Dirt
 
-itemGroup.item_tab=TouchEcho's Item
-itemGroup.block_tab=TouchEcho's Block
-itemGroup.tool_tab=TouchEcho's Tool
-itemGroup.armor_tab=TouchEcho's Armor
+itemGroup.touchecho.item_tab=TouchEcho's Item
+itemGroup.touchecho.block_tab=TouchEcho's Block
+itemGroup.touchecho.tool_tab=TouchEcho's Tool
+itemGroup.touchecho.armor_tab=TouchEcho's Armor
 
-entity.Villager.touchecho.dirtWorker=Dirt Worker
+entity.touchecho.SlimeKing=Slime King
 
 effect.touchecho.dirt_protection=Dirt Portection
 

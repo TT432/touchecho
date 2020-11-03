@@ -2,7 +2,7 @@
   "forge_marker": 1,
   "default": {
     "model": "minecraft:builtin/generated",
-    "textures": {"layer0": "touchecho:items/dirt_pickaxe"}
+    "textures": {"layer0": "touchecho:items/dirt_tool_pickaxe"}
   },
   "variants": {
     "inventory": [{"transform": "forge:default-tool"}]

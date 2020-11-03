@@ -1,5 +1,8 @@
 package com.kilkags.touchecho.lotus;
 
+import com.kilkags.touchecho.TouchEcho;
+import net.minecraft.util.ResourceLocation;
+
 /**
  * @author DustW
  */
@@ -41,9 +44,12 @@ public class Types {
     public static class Paths {
         private static final String BLOCK_STATES_FOLDER_PATH = "../src/main/resources/assets/touchecho/blockstates";
 
-
         public static String getBlockStatesFolderPath() {
             return BLOCK_STATES_FOLDER_PATH;
+        }
+
+        public static ResourceLocation getEntityTexturePath(String entityID) {
+            return new ResourceLocation(TouchEcho.MOD_ID + ":textures/entity/" + entityID + "/" + entityID + ".png");
         }
     }
 }

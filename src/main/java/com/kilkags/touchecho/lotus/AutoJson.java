@@ -12,7 +12,7 @@ public class AutoJson {
                 .append("  \"forge_marker\": 1,\n")
                 .append("  \"default\": {\n")
                 .append("    \"model\": \"minecraft:builtin/generated\",\n")
-                .append("    \"textures\": {\"layer0\": \"touchecho:items/").append(name).append("/}\n")
+                .append("    \"textures\": {\"layer0\": \"touchecho:items/").append(name).append("\"}\n")
                 .append("  },\n")
                 .append("  \"variants\": {\n")
                 .append("    \"inventory\": [{\"transform\": \"forge:default-").append(types).append("\"}]\n")
@@ -20,6 +20,22 @@ public class AutoJson {
                 .append("}\n").toString();
 
         create(name, Types.Paths.getBlockStatesFolderPath(), itemJson);
+    }
+    public static void blockCommonJsonCreator(String name) {
+        String blockJson = new StringBuffer()
+                .append("{\n")
+                .append("  \"forge_marker\": 1,\n")
+                .append("  \"default\": {\n")
+                .append("    \"model\": \"minecraft:cube_all\",\n")
+                .append("    \"textures\": {\"all\": \"touchecho:block/").append(name).append("\"}\n")
+                .append("  },\n")
+                .append("  \"variants\": {\n")
+                .append("    \"normal\": [{}],\n")
+                .append("    \"inventory\": [{\"transform\": \"forge:default-block\"}]\n")
+                .append("  }\n")
+                .append("}\n").toString();
+
+        create(name, Types.Paths.getBlockStatesFolderPath(), blockJson);
     }
 
     private static void create(String name, String path, String jsonContent) {
