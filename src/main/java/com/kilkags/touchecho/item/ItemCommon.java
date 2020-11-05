@@ -1,9 +1,9 @@
 package com.kilkags.touchecho.item;
 
+import com.kilkags.touchecho.creativetab.ModTabsList;
 import com.kilkags.touchecho.interfaces.IHasJson;
 import com.kilkags.touchecho.lotus.AutoJson;
 import com.kilkags.touchecho.lotus.LotusSymphony;
-import com.kilkags.touchecho.creativetab.ModTabsList;
 import com.kilkags.touchecho.lotus.Types;
 import net.minecraft.item.Item;
 

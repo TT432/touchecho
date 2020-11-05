@@ -1,9 +1,7 @@
 package com.kilkags.touchecho;
 
 import com.kilkags.touchecho.crafting.FurnaceRecipeRegistryHandler;
-import com.kilkags.touchecho.entity.ModEntityList;
 import com.kilkags.touchecho.potion.PotionRegistryHandler;
-import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;

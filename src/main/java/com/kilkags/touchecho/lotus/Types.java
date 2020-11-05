@@ -30,6 +30,15 @@ public class Types {
         public static final String FIREWORKS = "fireworks";
     }
 
+    public static class Color {
+        public static final int PURE_WHITE = 0xFFFFFF;
+        public static final int PURE_BLACK = 0x000000;
+        public static final int PURE_RED = 0xFF0000;
+        public static final int PURE_BLUE = 0x0000FF;
+        public static final int PURE_GREEN = 0x00FF00;
+
+    }
+
     public static class Tools {
         public static final String SHOVEL = "shovel";
         public static final String AXE = "axe";

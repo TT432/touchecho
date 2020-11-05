@@ -1,25 +1,24 @@
-package com.kilkags.touchecho.client.renderer;
+package com.kilkags.touchecho.client.entity.slimeking;
 
-import com.kilkags.touchecho.TouchEcho;
-import com.kilkags.touchecho.client.ModelSlimeKing;
 import com.kilkags.touchecho.entity.EntitySlimeKing;
 import com.kilkags.touchecho.lotus.Types;
-import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.util.ResourceLocation;
 import org.jetbrains.annotations.Nullable;
 
-public class RenderSlimeKing extends RenderLiving {
+/**
+ * @author DustW
+ */
+public class RenderSlimeKing extends RenderLiving<EntityMob> {
     public RenderSlimeKing(RenderManager manager) {
-        super(manager, new ModelSlimeKing(3), 2F);
+        super(manager, new ModelSlimeKing(), 2F);
     }
 
     @Nullable
     @Override
-    protected ResourceLocation getEntityTexture(Entity entity) {
-        return Types.Paths.getEntityTexturePath(EntitySlimeKing.ID);
+    protected ResourceLocation getEntityTexture(EntityMob entity) {
+        return Types.Paths.getEntityTexturePath(EntitySlimeKing.ENTITY_SLIME_KING);
     }
-
 }

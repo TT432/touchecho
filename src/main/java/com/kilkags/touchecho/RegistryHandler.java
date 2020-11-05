@@ -1,34 +1,24 @@
 package com.kilkags.touchecho;
 
-import com.google.common.collect.Maps;
 import com.kilkags.touchecho.block.ModBlockList;
 import com.kilkags.touchecho.client.entity.slimeking.RenderSlimeKing;
 import com.kilkags.touchecho.entity.EntitySlimeKing;
 import com.kilkags.touchecho.entity.ModEntityList;
 import com.kilkags.touchecho.interfaces.IHasJson;
 import com.kilkags.touchecho.item.ModItemList;
-import com.kilkags.touchecho.lotus.LotusSymphony;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.client.renderer.entity.RenderEntity;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.EntityEntry;
-import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.ArrayList;
-import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -60,18 +50,10 @@ public class RegistryHandler {
 
     @SubscribeEvent
     public static void onEntityRegistry(RegistryEvent.Register<EntityEntry> event) {
-        String registryName;
+        ModEntityList.initEntityMap();
 
-        for(Map.Entry<Entity, Object[]> entry: ModEntityList.ENTITY_MAP.entrySet()) {
-            registryName = entry.getValue()[0].toString();
-
-            if(entry.getKey() instanceof EntityMob) {
-                event.getRegistry().register(EntityEntryBuilder.create()
-                        .entity(entry.getKey().getClass())
-                        .id(registryName, 0)
-                        .name(LotusSymphony.getLangKeyFromRegKey(registryName))
-                        .tracker(80, 3, true).build());
-            }
+        for(EntityEntry entityEntry : ModEntityList.ENTITY_MAP.keySet()) {
+            event.getRegistry().register(entityEntry);
         }
     }
 

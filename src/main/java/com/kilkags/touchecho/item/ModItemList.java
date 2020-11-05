@@ -1,12 +1,7 @@
 package com.kilkags.touchecho.item;
 
-import com.kilkags.touchecho.TouchEcho;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemArmor;
-import net.minecraft.item.ItemBlock;
-import net.minecraftforge.common.util.EnumHelper;
 
 import java.util.HashMap;
 import java.util.Map;

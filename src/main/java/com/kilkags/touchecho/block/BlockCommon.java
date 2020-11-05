@@ -1,10 +1,10 @@
 package com.kilkags.touchecho.block;
 
+import com.kilkags.touchecho.creativetab.ModTabsList;
 import com.kilkags.touchecho.interfaces.IHasJson;
+import com.kilkags.touchecho.item.ModItemList;
 import com.kilkags.touchecho.lotus.AutoJson;
 import com.kilkags.touchecho.lotus.LotusSymphony;
-import com.kilkags.touchecho.creativetab.ModTabsList;
-import com.kilkags.touchecho.item.ModItemList;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemBlock;
