@@ -1,11 +1,13 @@
 package com.kilkags.touchecho;
 
+import com.kilkags.touchecho.capability.CapabilityRegistryHandler;
 import com.kilkags.touchecho.crafting.FurnaceRecipeRegistryHandler;
 import com.kilkags.touchecho.potion.PotionRegistryHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -29,30 +31,26 @@ public class TouchEcho {
     @Mod.Instance(MOD_ID)
     public static TouchEcho INSTANCE;
 
-    /**
-     * This is the first initialization event. Register tile entities here.
-     * The registry events below will have fired prior to entry to this method.
-     */
     @Mod.EventHandler
     @SideOnly(Side.CLIENT)
     public void preInit(FMLPreInitializationEvent event) {
         RegistryHandler.registerRenderAll();
+        CapabilityRegistryHandler.register();
     }
 
-    /**
-     * This is the second initialization event. Register custom recipes
-     */
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
         FurnaceRecipeRegistryHandler.register();
         PotionRegistryHandler.registry();
     }
 
-    /**
-     * This is the final initialization event. Register actions from other mods here
-     */
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
 
+    }
+
+    @Mod.EventHandler
+    public void serverStarting(FMLServerStartingEvent event) {
+        RegistryHandler.registerCommand(event);
     }
 }

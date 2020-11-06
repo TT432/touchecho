@@ -15,3 +15,7 @@ effect.touchecho.dirt_protection=Dirt Portection
 potion.effect.touchecho.dirtProtection=Dirt Protection Potion
 splash_potion.effect.touchecho.dirtProtection=Splash Potion of Dirt Protection
 lingering_potion.effect.touchecho.dirtProtection=Lingering Potion of Dirt Protection Potion
+
+commands.touchecho.usage=use directly.
+commands.touchecho.usage1=error.
+commands.touchecho.usage2=version... forever BETA
