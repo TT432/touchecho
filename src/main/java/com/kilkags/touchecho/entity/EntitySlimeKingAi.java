@@ -1,5 +1,6 @@
 package com.kilkags.touchecho.entity;
 
+import com.kilkags.touchecho.entity.EntitySlimeKing.SlimeKingMoveHelper;
 import com.kilkags.touchecho.lotus.LotusSymphony;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
@@ -57,7 +58,7 @@ public class EntitySlimeKingAi {
             if(LotusSymphony.entityExists(slimeTarget)) {
                 this.slime.faceEntity(slimeTarget, 10.0F, 10.0F);
             }
-            slime.MOVE_HELPER.setDirection(this.slime.rotationYaw, true);
+            ((SlimeKingMoveHelper)slime.getMoveHelper()).setDirection(this.slime.rotationYaw, true);
         }
     }
 
@@ -83,7 +84,7 @@ public class EntitySlimeKingAi {
                 this.chosenDegrees = (float)this.slime.getRNG().nextInt(360);
             }
 
-            slime.MOVE_HELPER.setDirection(this.chosenDegrees, false);
+            ((SlimeKingMoveHelper)slime.getMoveHelper()).setDirection(this.chosenDegrees, false);
         }
     }
 
@@ -107,7 +108,7 @@ public class EntitySlimeKingAi {
                 this.slime.getJumpHelper().setJumping();
             }
 
-            slime.MOVE_HELPER.setSpeed(1.2D);
+            ((SlimeKingMoveHelper)slime.getMoveHelper()).setSpeed(1.2D);
         }
     }
 
@@ -126,7 +127,7 @@ public class EntitySlimeKingAi {
 
         @Override
         public void updateTask() {
-            slime.MOVE_HELPER.setSpeed(1.0D);
+        	((SlimeKingMoveHelper)slime.getMoveHelper()).setSpeed(1.0D);
         }
     }
 

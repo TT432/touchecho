@@ -11,11 +11,11 @@ import net.minecraft.world.World;
  */
 public class EntitySlimeKing extends EntityMob {
     public static final String ENTITY_SLIME_KING = "slime_king";
-    public final SlimeKingMoveHelper MOVE_HELPER = new SlimeKingMoveHelper(this);
 
     public EntitySlimeKing(World worldIn) {
         super(worldIn);
         this.setSize(3F, 3F);
+        this.moveHelper = new SlimeKingMoveHelper(this);
     }
 
     @Override
