@@ -66,9 +66,7 @@ public class RegistryHandler {
     public static void onEntityRegistry(RegistryEvent.Register<EntityEntry> event) {
         ModEntityList.initEntityMap();
 
-        for(EntityEntry entityEntry : ModEntityList.ENTITY_MAP.keySet()) {
-            event.getRegistry().register(entityEntry);
-        }
+        event.getRegistry().registerAll(ModEntityList.ENTITY_MAP.keySet().toArray(new EntityEntry[0]));
     }
 
     @SubscribeEvent
@@ -99,7 +97,7 @@ public class RegistryHandler {
 
     @SideOnly(Side.CLIENT)
     private static void registerItemModel(Item item) {
-        ModelResourceLocation modelResourceLocation = new ModelResourceLocation(Objects.requireNonNull(item.getRegistryName()), "inventory");
+        ModelResourceLocation modelResourceLocation = new ModelResourceLocation(item.getRegistryName(), "inventory");
         ModelLoader.setCustomModelResourceLocation(item, 0, modelResourceLocation);
     }
 

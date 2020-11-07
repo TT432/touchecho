@@ -1,5 +1,7 @@
 package com.kilkags.touchecho.item;
 
+import com.kilkags.touchecho.capability.CapabilityRegistryHandler;
+import com.kilkags.touchecho.capability.DirtBallPower;
 import com.kilkags.touchecho.entity.EntityDirtBall;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -8,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 
 import java.util.HashMap;
@@ -29,6 +32,24 @@ public class ModItemList {
             }
 
             if(!worldIn.isRemote) {
+                DirtBallPower power = playerIn.getCapability(CapabilityRegistryHandler.DIRT_BALL_POWER, null);
+
+                assert power != null;
+                float green = power.getGreenPower();
+                float orange = power.getOrangePower();
+                float blue = power.getBluePower();
+
+                int minPower = 4;
+
+                if(green < minPower || orange < minPower || blue < minPower) {
+                    playerIn.sendMessage(new TextComponentString("You don't have enough power"));
+                    return ActionResult.newResult(EnumActionResult.PASS, heldItem);
+                }
+
+                power.setOrangePower(orange - 4);
+                power.setGreenPower(green - 4);
+                power.setBluePower(blue - 4);
+
                 EntityDirtBall entityDirtBall = new EntityDirtBall(worldIn, playerIn);
                 float pitch = playerIn.rotationPitch;
                 float yaw = playerIn.rotationYaw;

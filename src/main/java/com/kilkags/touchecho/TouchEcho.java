@@ -11,6 +11,8 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.Random;
+
 /**
  * @author kilkags
  */
@@ -25,9 +27,8 @@ public class TouchEcho {
     public static final String MOD_NAME = "Touchecho";
     public static final String VERSION = "1.0-SNAPSHOT";
 
-    /**
-     * This is the instance of your mod as created by Forge. It will never be null.
-     */
+    public static final Random RANDOM = new Random();
+
     @Mod.Instance(MOD_ID)
     public static TouchEcho INSTANCE;
 

@@ -18,12 +18,37 @@ public class ModelSlimeKing extends ModelBase {
 		textureWidth = 64;
 		textureHeight = 64;
 
+		float size = 16F;
+
+		int sizeBo = 12;
+		int sizeLe = 5;
+		int sizeMo = 2;
+
+		float ratioEtoB = (float) sizeLe / sizeBo;
+		float ratioMtoB = (float) sizeMo / sizeBo;
+
+		float deltaLe = size * ratioEtoB;
+		float deltaMo = size * ratioMtoB;
+
+		float xPosBo = -6.0F;
+		float xPosLe = 2 + 0.75F * size;
+		float xPosRe = -7 - 0.75F * size;
+		float xPosMo = -size / 6;
+
+		float yPosBo = -12.0F - size;
+		float yPosLe = -10 - 1.25F * size;
+		float yPosMo = -4 - size / 2;
+
+		float zPosBo = -6.0F;
+		float zPosLe = -7 - 0.75F * size;
+		float zPosMo = -7 - 5 * size / 6;
+
 		bone = new ModelRenderer(this);
 		bone.setRotationPoint(0.0F, 24.0F, 0.0F);
-		bone.cubeList.add(new ModelBox(bone, 20, 24, 2.0F, -10.0F, -7.0F, 5, 5, 5, 0.0F, false));
-		bone.cubeList.add(new ModelBox(bone, 0, 24, -7.0F, -10.0F, -7.0F, 5, 5, 5, 0.0F, false));
-		bone.cubeList.add(new ModelBox(bone, 0, 0, -6.0F,  -12.0F, -6.0F, 12, 12, 12, 0.0F, false));
-		bone.cubeList.add(new ModelBox(bone, 0, 0, 0.0F,   -4.0F, -7.0F, 2, 2, 2, 0.0F, false));
+		bone.cubeList.add(new ModelBox(bone, 0,  0,  xPosBo, yPosBo, zPosBo, sizeBo, sizeBo, sizeBo, size, false));
+		bone.cubeList.add(new ModelBox(bone, 20, 24, xPosLe, yPosLe, zPosLe, sizeLe, sizeLe, sizeLe, deltaLe, false));
+		bone.cubeList.add(new ModelBox(bone, 0,  24, xPosRe, yPosLe, zPosLe, sizeLe, sizeLe, sizeLe, deltaLe, false));
+		bone.cubeList.add(new ModelBox(bone, 0,  0,  xPosMo, yPosMo, zPosMo, sizeMo, sizeMo, sizeMo, deltaMo, false));
 	}
 
 	@Override
