@@ -1,0 +1,12 @@
+{
+  "parent": "block/orientable",
+  "textures": {
+    "front": "touchecho:blocks/dirt_compressor_north",
+    "down": "touchecho:blocks/dirt_compressor_north",
+    "up": "touchecho:blocks/dirt_compressor_top",
+    "north": "touchecho:blocks/dirt_compressor_north",
+    "east": "touchecho:blocks/dirt_compressor_side",
+    "south": "touchecho:blocks/dirt_compressor_south",
+    "west": "touchecho:blocks/dirt_compressor_side"
+  }
+}

@@ -3,9 +3,9 @@ package com.kilkags.touchecho.item;
 import com.google.common.base.CaseFormat;
 import com.kilkags.touchecho.creativetab.ModTabsList;
 import com.kilkags.touchecho.interfaces.IHasJson;
-import com.kilkags.touchecho.lotus.AutoJson;
-import com.kilkags.touchecho.lotus.LotusSymphony;
-import com.kilkags.touchecho.lotus.Types;
+import com.kilkags.touchecho.toolkits.AutoJson;
+import com.kilkags.touchecho.toolkits.LotusSymphony;
+import com.kilkags.touchecho.toolkits.Types;
 import net.minecraft.item.*;
 import net.minecraftforge.common.util.EnumHelper;
 
@@ -36,7 +36,7 @@ public class ItemToolCommon {
          */
         @Override
         public void whitJson() {
-            AutoJson.itemJsonCreator(this.getRegistryName().getPath(), Types.JsonTypes.TOOL);
+            AutoJson.itemJsonCreator(this.getRegistryName().getPath(), Types.JsonTypes.HANDHELD);
         }
     }
 
@@ -58,7 +58,7 @@ public class ItemToolCommon {
          */
         @Override
         public void whitJson() {
-            AutoJson.itemJsonCreator(this.getRegistryName().getPath(), Types.JsonTypes.TOOL);
+            AutoJson.itemJsonCreator(this.getRegistryName().getPath(), Types.JsonTypes.HANDHELD);
         }
     }
 
@@ -80,7 +80,7 @@ public class ItemToolCommon {
          */
         @Override
         public void whitJson() {
-            AutoJson.itemJsonCreator(this.getRegistryName().getPath(), Types.JsonTypes.TOOL);
+            AutoJson.itemJsonCreator(this.getRegistryName().getPath(), Types.JsonTypes.HANDHELD);
         }
     }
 
@@ -102,7 +102,7 @@ public class ItemToolCommon {
          */
         @Override
         public void whitJson() {
-            AutoJson.itemJsonCreator(this.getRegistryName().getPath(), Types.JsonTypes.TOOL);
+            AutoJson.itemJsonCreator(this.getRegistryName().getPath(), Types.JsonTypes.HANDHELD);
         }
     }
 
@@ -124,7 +124,7 @@ public class ItemToolCommon {
          */
         @Override
         public void whitJson() {
-            AutoJson.itemJsonCreator(this.getRegistryName().getPath(), Types.JsonTypes.TOOL);
+            AutoJson.itemJsonCreator(this.getRegistryName().getPath(), Types.JsonTypes.HANDHELD);
         }
     }
 

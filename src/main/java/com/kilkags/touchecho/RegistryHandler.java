@@ -1,30 +1,36 @@
 package com.kilkags.touchecho;
 
 import com.kilkags.touchecho.block.ModBlockList;
-import com.kilkags.touchecho.capability.CapabilityRegistryHandler;
-import com.kilkags.touchecho.capability.DirtBallPower;
 import com.kilkags.touchecho.capability.DirtBallPowerProvider;
 import com.kilkags.touchecho.client.entity.slimeking.RenderSlimeKing;
 import com.kilkags.touchecho.commond.ModCommandCommon;
 import com.kilkags.touchecho.entity.EntityDirtBall;
 import com.kilkags.touchecho.entity.EntitySlimeKing;
 import com.kilkags.touchecho.entity.ModEntityList;
+import com.kilkags.touchecho.fluid.ModFluidList;
 import com.kilkags.touchecho.interfaces.IHasJson;
 import com.kilkags.touchecho.item.ModItemList;
+import com.kilkags.touchecho.tileentity.TileEntityDirtCompressor;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderSnowball;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
@@ -33,7 +39,7 @@ import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.Objects;
+import java.util.function.Function;
 
 /**
  * @author DustW
@@ -41,23 +47,39 @@ import java.util.Objects;
 @Mod.EventBusSubscriber
 public class RegistryHandler {
     @SubscribeEvent
+    public static void onBlockRegistry(RegistryEvent.Register<Block> event) {
+        for (Fluid fluid : ModFluidList.FLUID_LIST) {
+            FluidRegistry.registerFluid(fluid);
+            FluidRegistry.addBucketForFluid(fluid);
+        }
+
+        event.getRegistry().registerAll(ModBlockList.BLOCK_MAP.keySet().toArray(new Block[0]));
+
+        registerTileEntities();
+
+        for(Block block : ModBlockList.BLOCK_MAP.keySet()) {
+            if(block instanceof IHasJson) {
+                ((IHasJson) block).whitJson();
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void regFluidSpirit(TextureStitchEvent.Pre event) {
+        TextureMap textureMap = event.getMap();
+        for(Fluid fluid : ModFluidList.FLUID_LIST) {
+            textureMap.registerSprite(fluid.getFlowing());
+            textureMap.registerSprite(fluid.getStill());
+        }
+    }
+
+    @SubscribeEvent
     public static void onItemRegistry(RegistryEvent.Register<Item> event) {
         event.getRegistry().registerAll(ModItemList.ITEM_LIST_MAP.keySet().toArray(new Item[0]));
 
         for(Item item : ModItemList.ITEM_LIST_MAP.keySet()) {
             if(item instanceof IHasJson) {
                 ((IHasJson) item).whitJson();
-            }
-        }
-    }
-
-    @SubscribeEvent
-    public static void onBlockRegistry(RegistryEvent.Register<Block> event) {
-        event.getRegistry().registerAll(ModBlockList.BLOCK_MAP.keySet().toArray(new Block[0]));
-
-        for(Block block : ModBlockList.BLOCK_MAP.keySet()) {
-            if(block instanceof IHasJson) {
-                ((IHasJson) block).whitJson();
             }
         }
     }
@@ -83,22 +105,9 @@ public class RegistryHandler {
         }
     }
 
-    @SubscribeEvent
-    public static void onPlayerClone(PlayerEvent.Clone event) {
-        DirtBallPower instance = event.getEntityPlayer().getCapability(CapabilityRegistryHandler.DIRT_BALL_POWER, null);
-        DirtBallPower original = event.getOriginal().getCapability(CapabilityRegistryHandler.DIRT_BALL_POWER, null);
-
-        assert instance != null;
-        assert original != null;
-        instance.setBluePower(original.getBluePower());
-        instance.setGreenPower(original.getGreenPower());
-        instance.setOrangePower(original.getOrangePower());
-    }
-
     @SideOnly(Side.CLIENT)
     private static void registerItemModel(Item item) {
-        ModelResourceLocation modelResourceLocation = new ModelResourceLocation(item.getRegistryName(), "inventory");
-        ModelLoader.setCustomModelResourceLocation(item, 0, modelResourceLocation);
+        ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
     }
 
     @SideOnly(Side.CLIENT)
@@ -117,5 +126,9 @@ public class RegistryHandler {
 
     public static void registerCommand(FMLServerStartingEvent event) {
         event.registerServerCommand(new ModCommandCommon());
+    }
+
+    public static void registerTileEntities() {
+        TileEntity.register(TileEntityDirtCompressor.ID, TileEntityDirtCompressor.class);
     }
 }

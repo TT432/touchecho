@@ -1,7 +1,7 @@
 package com.kilkags.touchecho.entity;
 
 import com.kilkags.touchecho.entity.EntitySlimeKing.SlimeKingMoveHelper;
-import com.kilkags.touchecho.lotus.LotusSymphony;
+import com.kilkags.touchecho.toolkits.LotusSymphony;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.player.EntityPlayer;

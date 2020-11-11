@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "touchecho:items/dirt_tool_axe"
+  }
+}

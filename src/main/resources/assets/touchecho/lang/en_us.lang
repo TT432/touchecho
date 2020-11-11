@@ -2,6 +2,7 @@ item.touchecho.dirtBall.name=Dirt Ball
 item.touchecho.dirtPickaxe.name=Dirt Pickaxe
 
 tile.touchecho.compressedDirt.name=Compressed Dirt
+tile.touchecho.dirtCompressor.name=Dirt Compressor
 
 itemGroup.touchecho.item_tab=TouchEcho's Item
 itemGroup.touchecho.block_tab=TouchEcho's Block
@@ -16,6 +17,17 @@ potion.effect.touchecho.dirtProtection=Dirt Protection Potion
 splash_potion.effect.touchecho.dirtProtection=Splash Potion of Dirt Protection
 lingering_potion.effect.touchecho.dirtProtection=Lingering Potion of Dirt Protection Potion
 
-commands.touchecho.usage=use directly.
-commands.touchecho.usage1=error.
-commands.touchecho.usage2=version... forever BETA
+commands.touchecho.usage1=Use "/touchecho help" to view command list.
+commands.touchecho.usage2=Use "/touchecho help" to view command list.
+commands.touchecho.error=TouchEcho : error.
+commands.touchecho.help.line1=touchecho set (capability color) (amount)
+
+message.touchecho.power.add.orange=Orange power + %s.
+message.touchecho.power.add.green=Green power + %s.
+message.touchecho.power.add.blue=Blue power + %s.
+message.touchecho.power.insufficient=You don't have enouth power.
+message.touchecho.power.add.error=Power add error.
+
+tooltip.touchecho.power.orange=§6Opower %s
+tooltip.touchecho.power.green=§2Gpower %s
+tooltip.touchecho.power.blue=§3Bpower %s

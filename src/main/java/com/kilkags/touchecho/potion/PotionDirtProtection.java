@@ -1,6 +1,7 @@
 package com.kilkags.touchecho.potion;
 
 import com.kilkags.touchecho.TouchEcho;
+import com.kilkags.touchecho.toolkits.Types;
 import net.minecraft.client.Minecraft;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -10,8 +11,8 @@ import net.minecraft.util.ResourceLocation;
  * @author DustW
  */
 public class PotionDirtProtection extends Potion {
-    private static final ResourceLocation TEXTURE =
-            new ResourceLocation(TouchEcho.MOD_ID + ":textures/gui/potion.png");
+    private static final ResourceLocation TEXTURE = Types.Paths.getPotionTexturePath("potion");
+
 
     protected PotionDirtProtection() {
         super(false, 0x806144);

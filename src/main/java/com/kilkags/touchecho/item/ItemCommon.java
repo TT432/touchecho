@@ -2,9 +2,9 @@ package com.kilkags.touchecho.item;
 
 import com.kilkags.touchecho.creativetab.ModTabsList;
 import com.kilkags.touchecho.interfaces.IHasJson;
-import com.kilkags.touchecho.lotus.AutoJson;
-import com.kilkags.touchecho.lotus.LotusSymphony;
-import com.kilkags.touchecho.lotus.Types;
+import com.kilkags.touchecho.toolkits.AutoJson;
+import com.kilkags.touchecho.toolkits.LotusSymphony;
+import com.kilkags.touchecho.toolkits.Types;
 import net.minecraft.item.Item;
 
 /**
@@ -27,6 +27,6 @@ public class ItemCommon extends Item implements IHasJson {
      */
     @Override
     public void whitJson() {
-        AutoJson.itemJsonCreator(this.getRegistryName().getPath(), Types.JsonTypes.ITEM);
+        AutoJson.itemJsonCreator(this.getRegistryName().getPath(), Types.JsonTypes.GENERATED);
     }
 }

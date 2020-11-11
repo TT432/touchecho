@@ -33,4 +33,11 @@ public class ModTabsList {
             return new ItemStack(ModItemList.DIRT_TOOL.PICKAXE);
         }
     };
+
+    public static final CreativeTabs MACHINE_TAB = new CreativeTabs("machine_tab") {
+        @Override
+        public ItemStack createIcon() {
+            return new ItemStack(ModBlockList.BLOCK_DIRT_COMPRESSOR);
+        }
+    };
 }

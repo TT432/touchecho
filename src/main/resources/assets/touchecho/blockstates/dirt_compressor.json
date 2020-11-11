@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "facing=up": { "model": "touchecho:dirt_compressor" },
+    "facing=down": { "model": "touchecho:dirt_compressor", "x": 180 },
+    "facing=east": { "model": "touchecho:dirt_compressor", "y": 90, "x": 90 },
+    "facing=south": { "model": "touchecho:dirt_compressor", "y": 180, "x": 90 },
+    "facing=west": { "model": "touchecho:dirt_compressor", "y": 270, "x": 90 },
+    "facing=north": { "model": "touchecho:dirt_compressor", "y": 0, "x": 90 }
+  }
+}

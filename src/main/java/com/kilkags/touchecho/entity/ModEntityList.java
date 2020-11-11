@@ -1,7 +1,7 @@
 package com.kilkags.touchecho.entity;
 
-import com.kilkags.touchecho.lotus.LotusSymphony;
-import com.kilkags.touchecho.lotus.Types;
+import com.kilkags.touchecho.toolkits.LotusSymphony;
+import com.kilkags.touchecho.toolkits.Types;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 
 import java.util.HashMap;

@@ -1,7 +1,7 @@
 package com.kilkags.touchecho.client.entity.slimeking;
 
 import com.kilkags.touchecho.entity.EntitySlimeKing;
-import com.kilkags.touchecho.lotus.Types;
+import com.kilkags.touchecho.toolkits.Types;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.monster.EntityMob;

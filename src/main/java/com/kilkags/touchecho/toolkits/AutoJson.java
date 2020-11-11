@@ -1,4 +1,4 @@
-package com.kilkags.touchecho.lotus;
+package com.kilkags.touchecho.toolkits;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -9,18 +9,15 @@ public class AutoJson {
     public static void itemJsonCreator(String name, String types) {
         String itemJson = new StringBuffer()
                 .append("{\n")
-                .append("  \"forge_marker\": 1,\n")
-                .append("  \"default\": {\n")
-                .append("    \"model\": \"minecraft:builtin/generated\",\n")
-                .append("    \"textures\": {\"layer0\": \"touchecho:items/").append(name).append("\"}\n")
-                .append("  },\n")
-                .append("  \"variants\": {\n")
-                .append("    \"inventory\": [{\"transform\": \"forge:default-").append(types).append("\"}]\n")
+                .append("  \"parent\": \"item/").append(types).append("\",\n")
+                .append("  \"textures\": {\n")
+                .append("    \"layer0\": \"touchecho:items/").append(name).append("\"\n")
                 .append("  }\n")
                 .append("}\n").toString();
 
-        create(name, Types.Paths.getBlockStatesFolderPath(), itemJson);
+        create(name, Types.Paths.getModelsPath() + "/item", itemJson);
     }
+
     public static void blockCommonJsonCreator(String name) {
         String blockJson = new StringBuffer()
                 .append("{\n")
