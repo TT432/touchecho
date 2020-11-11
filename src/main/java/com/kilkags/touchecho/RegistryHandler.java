@@ -8,12 +8,17 @@ import com.kilkags.touchecho.entity.EntityDirtBall;
 import com.kilkags.touchecho.entity.EntitySlimeKing;
 import com.kilkags.touchecho.entity.ModEntityList;
 import com.kilkags.touchecho.fluid.ModFluidList;
+import com.kilkags.touchecho.interfaces.IHasBlock;
 import com.kilkags.touchecho.interfaces.IHasJson;
 import com.kilkags.touchecho.item.ModItemList;
 import com.kilkags.touchecho.tileentity.TileEntityDirtCompressor;
+import com.kilkags.touchecho.toolkits.LotusSymphony;
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderSnowball;
@@ -22,13 +27,16 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fluids.BlockFluidBase;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
@@ -38,6 +46,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Function;
 
@@ -46,11 +55,31 @@ import java.util.function.Function;
  */
 @Mod.EventBusSubscriber
 public class RegistryHandler {
+    @SideOnly(Side.SERVER)
     @SubscribeEvent
     public static void onBlockRegistry(RegistryEvent.Register<Block> event) {
         for (Fluid fluid : ModFluidList.FLUID_LIST) {
-            FluidRegistry.registerFluid(fluid);
             FluidRegistry.addBucketForFluid(fluid);
+
+            if(fluid instanceof IHasBlock) {
+                ((IHasBlock) fluid).withBlock();
+            }
+        }
+
+        event.getRegistry().registerAll(ModBlockList.BLOCK_MAP.keySet().toArray(new Block[0]));
+
+        registerTileEntities();
+    }
+
+    @SideOnly(Side.CLIENT)
+    @SubscribeEvent
+    public static void onBlockRegistryClient(RegistryEvent.Register<Block> event) {
+        for (Fluid fluid : ModFluidList.FLUID_LIST) {
+            FluidRegistry.addBucketForFluid(fluid);
+
+            if(fluid instanceof IHasBlock) {
+                ((IHasBlock) fluid).withBlock();
+            }
         }
 
         event.getRegistry().registerAll(ModBlockList.BLOCK_MAP.keySet().toArray(new Block[0]));
@@ -58,6 +87,10 @@ public class RegistryHandler {
         registerTileEntities();
 
         for(Block block : ModBlockList.BLOCK_MAP.keySet()) {
+            if(block instanceof BlockFluidBase) {
+                registerFluidRender((BlockFluidBase) block, block.getRegistryName().getPath());
+            }
+
             if(block instanceof IHasJson) {
                 ((IHasJson) block).whitJson();
             }
@@ -130,5 +163,21 @@ public class RegistryHandler {
 
     public static void registerTileEntities() {
         TileEntity.register(TileEntityDirtCompressor.ID, TileEntityDirtCompressor.class);
+    }
+
+    @SideOnly(Side.CLIENT)
+    public static void registerFluidRender(BlockFluidBase blockFluid, String blockStateName)
+    {
+        final String location = LotusSymphony.getLangKeyFromRegKey(blockStateName);
+        final Item itemFluid = Item.getItemFromBlock(blockFluid);
+        ModelLoader.setCustomMeshDefinition(itemFluid, stack -> new ModelResourceLocation(location, "fluid"));
+        ModelLoader.setCustomStateMapper(blockFluid, new StateMapperBase()
+        {
+            @Override
+            protected @NotNull ModelResourceLocation getModelResourceLocation(@NotNull IBlockState state)
+            {
+                return new ModelResourceLocation(location, "fluid");
+            }
+        });
     }
 }

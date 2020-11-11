@@ -12,5 +12,5 @@ import java.util.List;
 public class ModFluidList {
     public static final List<Fluid> FLUID_LIST = new ArrayList<>();
 
-    public static final FluidWithBlockCommon FAKE_WATER = new FluidWithBlockCommon("fake_water", 1000, 1000, 0, 300, false, Types.Color.PURE_WHITE);
+    public static final FluidCommon FAKE_WATER = new FluidCommon("fake_water", 1000, 1000, 0, 300, false, Types.Color.PURE_WHITE);
 }
