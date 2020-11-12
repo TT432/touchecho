@@ -20,7 +20,7 @@ public class FluidCommon extends Fluid implements IHasBlock {
     private final String NAME;
 
     public FluidCommon(String name, int density, int viscosity, int luminosity, int temperature, boolean isGaseous, int colorIn) {
-        super(name + "fluid", Types.Paths.getFluidTexturePath(name)[0], Types.Paths.getFluidTexturePath(name)[1]);
+        super(name + "_fluid", Types.Paths.getFluidTexturePath(name)[0], Types.Paths.getFluidTexturePath(name)[1]);
 
         this.NAME = name;
         this.setUnlocalizedName(LotusSymphony.getLangKeyFromRegKey(name));

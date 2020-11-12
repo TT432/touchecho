@@ -88,7 +88,9 @@ public class RegistryHandler {
 
         for(Block block : ModBlockList.BLOCK_MAP.keySet()) {
             if(block instanceof BlockFluidBase) {
-                registerFluidRender((BlockFluidBase) block, block.getRegistryName().getPath());
+                String blockStateName = block.getRegistryName().getPath();
+                registerFluidRender((BlockFluidBase) block, blockStateName);
+
             }
 
             if(block instanceof IHasJson) {
@@ -166,17 +168,16 @@ public class RegistryHandler {
     }
 
     @SideOnly(Side.CLIENT)
-    public static void registerFluidRender(BlockFluidBase blockFluid, String blockStateName)
-    {
-        final String location = LotusSymphony.getLangKeyFromRegKey(blockStateName);
+    public static void registerFluidRender(BlockFluidBase blockFluid, String blockStateName) {
+        String location = TouchEcho.MOD_ID + ":" + blockStateName;
         final Item itemFluid = Item.getItemFromBlock(blockFluid);
-        ModelLoader.setCustomMeshDefinition(itemFluid, stack -> new ModelResourceLocation(location, "fluid"));
+        ModelLoader.setCustomMeshDefinition(itemFluid, (stack) -> new ModelResourceLocation(blockStateName, "fluid"));
         ModelLoader.setCustomStateMapper(blockFluid, new StateMapperBase()
         {
             @Override
             protected @NotNull ModelResourceLocation getModelResourceLocation(@NotNull IBlockState state)
             {
-                return new ModelResourceLocation(location, "fluid");
+                return new ModelResourceLocation(blockStateName, "fluid");
             }
         });
     }
