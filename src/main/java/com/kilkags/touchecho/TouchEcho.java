@@ -47,6 +47,13 @@ public class TouchEcho {
     }
 
     @Mod.EventHandler
+    @SideOnly(Side.SERVER)
+    public void preInitServer(FMLPreInitializationEvent event) {
+        NetworkRegistryHandler.register();
+        CapabilityRegistryHandler.register();
+    }
+
+    @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
         FurnaceRecipeRegistryHandler.register();
         PotionRegistryHandler.registry();
