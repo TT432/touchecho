@@ -178,7 +178,11 @@ public class RegistryHandler {
             @Override
             protected @NotNull ModelResourceLocation getModelResourceLocation(@NotNull IBlockState state)
             {
+<<<<<<< HEAD
                 return new ModelResourceLocation(location, "fluid");
+=======
+                return new ModelResourceLocation("touchecho:"+blockStateName, "fluid");
+>>>>>>> master
             }
         });
     }
