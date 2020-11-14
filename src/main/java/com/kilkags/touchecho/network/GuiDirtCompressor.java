@@ -1,5 +1,6 @@
 package com.kilkags.touchecho.network;
 
+import com.kilkags.touchecho.toolkits.GuiHelper;
 import com.kilkags.touchecho.toolkits.LotusSymphony;
 import com.kilkags.touchecho.toolkits.Types;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -20,6 +21,8 @@ public class GuiDirtCompressor extends GuiContainer {
 
     public GuiDirtCompressor(EntityPlayer player, World world, int x, int y, int z) {
         super(new ContainerDirtCompressor(player, world, x, y, z));
+        this.xSize = 200;
+        this.ySize = 200;
     }
 
     @Override
@@ -31,13 +34,17 @@ public class GuiDirtCompressor extends GuiContainer {
 
     @Override
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
+        int tickNow = ((ContainerDirtCompressor) this.inventorySlots).getCompressorProgress();
         int left = (this.width - this.xSize) /2;
         int top = (this.height - this.ySize) /2;
+
+        int[] inventoryUpperLeftPos = GuiHelper.standardInventoryUpperLeftPos(this);
+
+        GuiHelper.drawBackground(this, this.xSize, this.ySize);
+        GuiHelper.drawInventory(this, inventoryUpperLeftPos[0], inventoryUpperLeftPos[1]);
+
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         this.mc.getTextureManager().bindTexture(TEXTURE);
-        this.drawTexturedModalRect(left, top, 0, 0, this.xSize, this.ySize);
-
-        int tickNow = ((ContainerDirtCompressor) this.inventorySlots).getCompressorProgress();
 
         int barHeightCross = 18;
         int barWidthCross = 1 + LotusSymphony.getTexturesMovePreTick(84, 240, tickNow);

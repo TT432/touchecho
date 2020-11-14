@@ -37,6 +37,11 @@ public class Types {
         public static final int PURE_BLUE = 0x0000FF;
         public static final int PURE_GREEN = 0x00FF00;
 
+
+        public static int getFluidColor(int rgbColor) {
+            return rgbColor | 0xFF000000;
+        }
+
     }
 
     public static class Tools {
@@ -76,7 +81,8 @@ public class Types {
         public static ResourceLocation[] getFluidTexturePath(String fluidName) {
             return  new ResourceLocation[] {
                     new ResourceLocation(TouchEcho.MOD_ID + ":fluid/"+ fluidName +"_still"),
-                    new ResourceLocation(TouchEcho.MOD_ID + ":fluid/"+ fluidName +"_flow")};
+                    new ResourceLocation(TouchEcho.MOD_ID + ":fluid/"+ fluidName +"_flow"),
+                    new ResourceLocation(TouchEcho.MOD_ID + ":fluid/"+ fluidName +"_overlay")};
         }
     }
 }

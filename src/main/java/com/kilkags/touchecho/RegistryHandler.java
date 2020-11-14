@@ -100,6 +100,7 @@ public class RegistryHandler {
     }
 
     @SubscribeEvent
+    @SideOnly(Side.CLIENT)
     public static void regFluidSpirit(TextureStitchEvent.Pre event) {
         TextureMap textureMap = event.getMap();
         for(Fluid fluid : ModFluidList.FLUID_LIST) {
@@ -171,13 +172,13 @@ public class RegistryHandler {
     public static void registerFluidRender(BlockFluidBase blockFluid, String blockStateName) {
         String location = TouchEcho.MOD_ID + ":" + blockStateName;
         final Item itemFluid = Item.getItemFromBlock(blockFluid);
-        ModelLoader.setCustomMeshDefinition(itemFluid, (stack) -> new ModelResourceLocation(blockStateName, "fluid"));
+        ModelLoader.setCustomMeshDefinition(itemFluid, (stack) -> new ModelResourceLocation(location, "fluid"));
         ModelLoader.setCustomStateMapper(blockFluid, new StateMapperBase()
         {
             @Override
             protected @NotNull ModelResourceLocation getModelResourceLocation(@NotNull IBlockState state)
             {
-                return new ModelResourceLocation(blockStateName, "fluid");
+                return new ModelResourceLocation(location, "fluid");
             }
         });
     }

@@ -13,7 +13,7 @@ import org.jetbrains.annotations.Nullable;
  */
 public class CapabilityRegistryHandler {
     @CapabilityInject(DirtBallPower.class)
-    public static Capability<DirtBallPower> DIRT_BALL_POWER;
+    public static Capability<DirtBallPower> DIRT_BALL_POWER = null;
 
     public static void register() {
         CapabilityManager.INSTANCE.register(DirtBallPower.class, new Capability.IStorage<DirtBallPower>() {

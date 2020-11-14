@@ -1,7 +1,7 @@
 package com.kilkags.touchecho.network;
 
-import com.kilkags.touchecho.capability.CapabilityRegistryHandler;
 import com.kilkags.touchecho.tileentity.TileEntityDirtCompressor;
+import com.kilkags.touchecho.toolkits.GuiHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -18,6 +18,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
+
+import java.util.List;
 
 /**
  * @author DustW
@@ -43,18 +45,13 @@ public class ContainerDirtCompressor extends Container {
         this.down = tileEntity.getCapability(itemHandlerCapability, EnumFacing.DOWN);
         this.side = tileEntity.getCapability(itemHandlerCapability, EnumFacing.NORTH);
 
-        InventoryPlayer inventoryPlayer = player.inventory;
-
         this.addSlotToContainer(new SlotItemHandler(this.side, 0, 26, 48));
         this.addSlotToContainer(new SlotItemHandler(this.up, 0, 81, 18));
         this.addSlotToContainer(new SlotItemHandler(this.down, 0, 134, 47));
 
-        int[] range = new int[] {0, 1, 2, 3, 4, 5, 6, 7, 8};
-        for(int i : range) {
-            this.addSlotToContainer(new Slot(inventoryPlayer, i, 8 + 18 * i, 142));
-            this.addSlotToContainer(new Slot(inventoryPlayer, i + 9, 8 + 18 * i, 84));
-            this.addSlotToContainer(new Slot(inventoryPlayer, i + 18, 8 + 18 * i, 102));
-            this.addSlotToContainer(new Slot(inventoryPlayer, i + 27, 8 + 18 * i, 120));
+        List<Slot> slots = GuiHelper.addInventory(player.inventory, 20, 106);
+        for(Slot slot : slots) {
+            this.addSlotToContainer(slot);
         }
     }
 

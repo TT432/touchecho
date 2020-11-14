@@ -11,6 +11,7 @@ import org.jetbrains.annotations.Nullable;
 public class TouchEchoGuiHandler implements IGuiHandler {
     private static int id = 0;
     public static final int DIRT_COMPRESSOR = id++;
+    public static final int FLUID_TANK = id++;
 
     @Nullable
     @Override
